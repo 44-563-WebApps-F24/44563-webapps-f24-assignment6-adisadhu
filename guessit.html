@@ -4,37 +4,50 @@
 <body>
     <h1>guess the colour aditya</h1>
 
-<h2>Getting input</h2>
-
-<form>
-    <label for="form1_age">What is your age </label>
-    <input type ="number" id="form1_age" name="form1_age" min=10 max=50 step=2 value=30> <br>
-
-    <label for="form1_nick">What is your nickname </label>
-    <input type ="text" id="form1_nick" name="form1_nick" autofocus> <br>
-
-    <input type="button" onclick="resolveForm()" value="Get values from form">
-</form>
-
-
-<p id="result">This text will be replaced </p>
-
-<script> 
-
-function resolveForm (){
-    console.log("Getting form values")
-    age = document.getElementById("form1_age").value
-    nick = document.getElementById("form1_nick").value
-    confirmed = confirm("Are these the values? "+age+" and "+nick)
-    
-    out = document.getElementById("result")
-    if(confirmed){
-        out.innerHTML = "Values were confirmed"
-    } else {
-        out.innerHTML = "Values were not confirmed"
-    }
-}
-</script>
-
-</body>
-</html> 
+    <form>
+        <label for="mysteryColor"> Guess the color : </label>
+        <input type="password" id="mysteryColor" value ="Red">
+        <label for="guessColor" > Enter a guess : </label>
+        <input type="text" id="guessColor">
+        <button type="button" onclick="processColor()">Check the color</button>
+    </form>
+        <div id="guessing"></div>
+        <script>
+        let attempts = 0;
+        let wrong = 0;
+        function processColor(){
+            const mysteryColor = document.getElementById('mysteryColor').value;
+            const guessColor = document.getElementById('guessColor').value;
+            attempts++;
+            if(guessColor.toLowerCase() !== mysteryColor.toLowerCase()){
+            wrong++;
+                alert("Not matched");
+            }
+            else{
+                alert("Matched");
+            }
+            document.getElementById("result").innerHTML = `Attempts: ${attempts} | Wrong: ${wrong}`;
+        }
+        </script><br>
+        <div>
+            <img id="plants" src="image5.avif alt="PLANT 1" width="200" height="200" onclick="nextImage()">
+        </div>
+        <script>
+            let showing = 1;
+            function nextImage(){
+                switch(showing){
+                case 1: 
+                document.getElementById('plants').src='image6.avif';
+                showing = 2;
+                break;
+                case 2:
+                    document.getElementById('plants').src='image7.avif';
+                    showing = 3;
+                    break;
+                    case 3:
+                        document.getElementById('plants').src='image7.avif';
+                        showing = 1;
+                        break;
+                }
+            }
+        </script>
